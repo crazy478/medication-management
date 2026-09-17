@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Medication Management System</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- LOGIN PAGE -->
+    <div id="loginPage" class="login-container">
+
+        <div class="login-box">
+
+            <div class="logo">💊</div>
+
+            <h1>Medication Management</h1>
+            <p>Old-Age Home</p>
+
+            <input
+                type="text"
+                id="username"
+                placeholder="Username"
+            >
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Password"
+            >
+
+            <button onclick="login()">Login</button>
+
+            <p id="loginMessage"></p>
+
+            <small>Demo: admin / 1234</small>
+
+        </div>
+
+    </div>
+
+
+    <!-- MAIN APPLICATION -->
+    <div id="app" class="app hidden">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <h2>💊 MedCare</h2>
+
+            <button onclick="showPage('dashboard')">
+                🏠 Dashboard
+            </button>
+
+            <button onclick="showPage('residents')">
+                👴 Residents
+            </button>
+
+            <button onclick="showPage('medicines')">
+                💊 Medicines
+            </button>
+
+            <button onclick="showPage('schedule')">
+                ⏰ Schedule
+            </button>
+
+            <button onclick="showPage('history')">
+                📋 History
+            </button>
+
+            <button onclick="logout()" class="logout">
+                🚪 Logout
+            </button>
+
+        </aside>
+
+
+        <!-- CONTENT -->
+        <main class="content">
+
+            <!-- DASHBOARD -->
+            <section id="dashboard" class="page">
+
+                <h1>Dashboard</h1>
+
+                <p class="welcome">
+                    Welcome to the Medication Management System
+                </p>
+
+                <div class="cards">
+
+                    <div class="card">
+                        <span>👴</span>
+                        <h3>Residents</h3>
+                        <strong id="residentCount">0</strong>
+                    </div>
+
+                    <div class="card">
+                        <span>💊</span>
+                        <h3>Medicines</h3>
+                        <strong id="medicineCount">0</strong>
+                    </div>
+
+                    <div class="card">
+                        <span>⏰</span>
+                        <h3>Due Today</h3>
+                        <strong id="dueCount">0</strong>
+                    </div>
+
+                    <div class="card">
+                        <span>⚠️</span>
+                        <h3>Missed</h3>
+                        <strong id="missedCount">0</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <h2>Today's Medication</h2>
+
+                    <div id="todayMedication"></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- RESIDENTS -->
+            <section id="residents" class="page hidden">
+
+                <h1>Residents</h1>
+
+                <div class="panel">
+
+                    <h2>Add Resident</h2>
+
+                    <input id="residentName"
+                           placeholder="Resident Name">
+
+                    <input id="residentAge"
+                           type="number"
+                           placeholder="Age">
+
+                    <select id="residentGender">
+
+                        <option value="">
+                            Select Gender
+                        </option>
+
+                        <option>Male</option>
+                        <option>Female</option>
+
+                    </select>
+
+                    <input id="residentRoom"
+                           placeholder="Room Number">
+
+                    <input id="residentContact"
+                           placeholder="Emergency Contact">
+
+                    <button onclick="addResident()">
+                        Add Resident
+                    </button>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <h2>Resident List</h2>
+
+                    <div id="residentList"></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- MEDICINES -->
+            <section id="medicines" class="page hidden">
+
+                <h1>Medicines</h1>
+
+                <div class="panel">
+
+                    <h2>Add Medicine</h2>
+
+                    <select id="medicineResident">
+                        <option value="">
+                            Select Resident
+                        </option>
+                    </select>
+
+                    <input id="medicineName"
+                           placeholder="Medicine Name">
+
+                    <input id="medicineDosage"
+                           placeholder="Dosage (e.g. 500 mg)">
+
+                    <input id="medicineInstructions"
+                           placeholder="Instructions">
+
+                    <button onclick="addMedicine()">
+                        Add Medicine
+                    </button>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <h2>Medicine List</h2>
+
+                    <div id="medicineList"></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- SCHEDULE -->
+            <section id="schedule" class="page hidden">
+
+                <h1>Medicine Schedule</h1>
+
+                <div class="panel">
+
+                    <h2>Create Schedule</h2>
+
+                    <select id="scheduleMedicine">
+                        <option value="">
+                            Select Medicine
+                        </option>
+                    </select>
+
+                    <input id="scheduleTime"
+                           type="time">
+
+                    <select id="scheduleFrequency">
+
+                        <option>Daily</option>
+                        <option>Twice Daily</option>
+                        <option>Three Times Daily</option>
+
+                    </select>
+
+                    <button onclick="addSchedule()">
+                        Add Schedule
+                    </button>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <h2>Schedules</h2>
+
+                    <div id="scheduleList"></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- HISTORY -->
+            <section id="history" class="page hidden">
+
+                <h1>Administration History</h1>
+
+                <div class="panel">
+
+                    <div id="historyList"></div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
